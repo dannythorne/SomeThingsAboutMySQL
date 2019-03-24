@@ -1,49 +1,392 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+    <title>Some Things About MySQL</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <style>
+#header
+{
+  position:absolute;
+  width:100%;
+  top:5%;
+  right:-5%;
+  padding:0!important;
+  margin:0 10% 0 0!important;
+  text-align:right;
+  color:#e39f30;
+  font-size:120%;
+}
+#footer
+{
+  position:absolute;
+  bottom:2%;
+  width:100%;
+  margin:0;
+  padding:0!important;
+  text-align:center;
+  color:#e39f30;
+}
+#logo
+{
+  position:absolute;
+  width:10%;
+  top:3%;
+  left:5%;
+}
+#title1
+{
+  text-transform:none!important;
+  margin-top:5%!important;
+  color:#e39f30!important;
+  text-align:center;
+}
+#title2
+{
+  text-transform:none!important;
+  margin-top:2%!important;
+  color:#2e92c0!important;
+  text-align:center;
+}
+#title3
+{
+  text-transform:none!important;
+  margin-top:2%!important;
+  color:#e39f30!important;
+  text-align:center;
+}
+  p
+  {
+    text-align:left;
+    padding-left:5%!important;
+  }
+  h1, h2, h3, h4, h5, h6, .numberbullet
+  {
+    text-align:left;
+    padding-left:5%!important;
+    margin-top:2%!important;
+    color:#2e92c0!important;
+    text-transform:none!important;
+    text-shadow:0px 0px 0px #ffffff!important;
+  }
+  h3
+  {
+    margin-top:7%!important;
+  }
+  h4
+  {
+    text-transform:none!important;
+    color:#e39f30!important;
+  }
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+  #title-slide
+  {
+    margin-top:15%!important;
+    color:#fff!important;
+  }
+  #header
+  {
+    position:absolute;
+    width:100%;
+    top:5%;
+    right:-5%;
+    padding:0!important;
+    margin:0 10% 0 0!important;
+    text-align:right;
+    color:#e39f30;
+    font-size:120%;
+  }
+  #footer
+  {
+    position:absolute;
+    bottom:2%;
+    width:100%;
+    margin:0;
+    padding:0!important;
+    text-align:center;
+    color:#e39f30;
+  }
+  #logo
+  {
+    position:absolute;
+    width:10%;
+    top:3%;
+    left:5%;
+  }
+  .audience, .purpose, .topic, .goals
+  {
+    color:#2e92c0!important;
+    font-weight:bold!important;
+  }
+  .parenthetical
+  {
+    font-size:0.9em!important;
+    color:#606060;
+  }
+  .glow
+  {
+    color:#ffffff;
+    text-shadow:0 0 15px #ffffff;
+  }
+  .dim
+  {
+    color:#d8d8d8;
+  }
+  .numberbullet
+  {
+    margin-right:0.5em!important;
+  }
+  .pbullet
+  {
+    margin-top:5%!important;
+    color:#e39f30;
+  }
+  .command, .longcommand, .verylongcommand, .goldencommand
+  {
+    border:3px solid #909090!important;
+    border-radius:8px!important;
+    background-color:#606060!important;
+    color:#fff!important;
+  }
+  .command, .longcommand, .verylongcommand, .commandheader, .titlecommand, .goldencommand, a
+  {
+    font-family:monospace!important;
+    margin-left:0.25em!important;
+    padding-left:0.5em!important;
+    margin-right:0.25em!important;
+    padding-right:0.5em!important;
+    padding-top:0.0em!important;
+    padding-bottom:0.2em!important;
+  }
+  .longcommand
+  {
+    font-size:50%!important;
+  }
+  .verylongcommand
+  {
+    font-size:40%!important;
+  }
+  .commandheader
+  {
+    font-weight:bold!important;
+    border:2px solid #909090!important;
+    border-radius:8px!important;
+    background-color:#303030!important;
+    color:#c0c0c0!important;
+  }
+  .titlecommand
+  {
+    font-family:monospace!important;
+    border:2px solid !important;
+    border-radius:8px!important;
+  }
+  .goldencommand
+  {
+    box-shadow:0px 0px 9px 9px #ffff00;
+  }
+  .commandlist > td
+  {
+    text-align:center!important;
+    padding-bottom:0.4em!important;
+    border-style:dotted!important;
+    border-color:#787878!important;
+  }
+  .commandlist:last-child > td
+  {
+    border-style:none!important;
+  }
+  .commandlegend
+  {
+    font-size:0.7em!important;
+  }
+  a
+  {
+    color:#2e92c0!important;
+    font-size:0.7em!important;
+  }
+  section
+  {
+    height:100%;
+    font-size:80%!important;
+  }
+  ul, ol, dl
+  {
+    text-align:left;
+    padding-left:5%!important;
+    display:block!important;
+  }
+    </style>
+  </head>
+  <body>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+  <img id="logo" src="./img/CABEM_alpha.png">
+  <p id="header">January 17, 2019</p>
+  <p id="footer"> Software Solutions to Advance your Business <br/> <a href="http://www.cabem.com">www.cabem.com</a> </p>
+
+    <div class="reveal">
+      <div class="slides">
+
+<section>
+  <div style="visibility:hidden">
+  <h2 id="title1">Some Things</h2>
+  <h2 id="title3">About MySQL</h2>
+  <p style="color:#2e5280;margin-bottom:1%!important;">
+  By: Danny Thorne
+  </p>
+  </div>
+  <img src="./img/Banner_alpha.png" style="margin:0;border:0;box-shadow:0 0 0;background:rgba(0,0,0,0);width:49%;">
+  <img src="./img/Banner_alpha.png" style="margin:0;border:0;box-shadow:0 0 0;background:rgba(0,0,0,0);width:49%;">
+</section>
+
+<section>
+  <div style="">
+  <h2 id="title1">Some Things About</h2>
+  <h2 id="title2" style="">Interacting With</h2>
+  <h2 id="title3">MySQL</h2>
+  <p style="color:#2e5280;margin-bottom:1%!important;">
+  By: Danny Thorne
+  </p>
+  </div>
+  <img src="./img/Banner_alpha.png" style="margin:0;border:0;box-shadow:0 0 0;background:rgba(0,0,0,0);width:49%;">
+  <img src="./img/Banner_alpha.png" style="margin:0;border:0;box-shadow:0 0 0;background:rgba(0,0,0,0);width:49%;">
+</section>
+
+<section>
+<!-- ####################################################################### -->
+  <h3></h3>
+
+  <p class="pbullet">
+  <span class="topic">Topic:</span>
+  &nbsp;
+  Ways to work with MySQL.
+  <span class="parenthetical">
+  (Hopefully some of which are not universally known/utilized.)
+  </span>
+  </p>
+
+  <p class="pbullet">
+  <span class="audience">Audience:</span>
+  &nbsp;
+  Devs
+  <span class="parenthetical">
+  (AFAIK, we all interact with MySQL on pretty much a daily basis.)
+  </span>
+  </p>
+
+  <p class="pbullet">
+  <span class="purpose">Purpose:</span>
+  &nbsp;
+  Improved effectiveness and efficiency with MySQL.
+  <span class="parenthetical">
+  (Bonus: GUIs not required!)
+  </span>
+  </p>
+
+  <p class="pbullet">
+  <span class="goals">Goal:</span>
+  &nbsp;
+  Everyone sees at least one thing they didn't know about or hadn't thought about before.
+  <span class="parenthetical">
+  (asdf)
+  </span>
+  </p>
+
+</section>
+
+<section>
+  <h3>Extracting an Insert Statement</h3>
+  <p class="pbullet"><span class="purpose">Problem:</span>&nbsp; Need to insert a record similar to an existing one.</p>
+</section>
+<section>
+  <h3>Extracting an Insert Statement</h3>
+  <p class="pbullet"><span class="purpose">Problem:</span>&nbsp; Need to insert a record similar to an existing one.</p>
+  <p class="pbullet"><span class="purpose">Solution?</span></p>
+  <p>Heaven forbid:</p>
+  <p> <span class="longcommand">select * from Table where something;</span></p>
+  <p>...and then turn it into an insert statement manually.</p>
+</section>
+<section>
+  <h3>Extracting an Insert Statement</h3>
+  <p class="pbullet"><span class="purpose">Problem:</span>&nbsp; Need to insert a record similar to an existing one.</p>
+  <p class="pbullet"><span class="purpose">Solution?</span></p>
+  <p>Better:</p>
+  <p> <span class="longcommand">select * from Table where something;</span></p>
+  <p>...and then turn it into an insert statement automatically?</p>
+  <p>But this can be finicky, and MySQL can give us insert statement directly anyway...</p>
+</section>
+<section>
+  <h3>Extracting an Insert Statement</h3>
+  <p class="pbullet"><span class="purpose">Problem:</span>&nbsp; Need to insert a record similar to an existing one.</p>
+  <p> <span class="longcommand">mysqldump -u root -p Database Table | grep something</span></p>
+</section>
+<section>
+  <section>
+    <h3>Extracting an Insert Statement</h3>
+    <p class="pbullet"><span class="purpose">Problem:</span>&nbsp; Need to insert a record similar to an existing one.</p>
+    <p> <span class="longcommand">mysqldump -u root -p Database Table | grep something</span></p>
+    <p> <span class="longcommand">mysqldump -u root -p <span class="glow">--skip-extended-insert</span> Database Table</span><span class="parenthetical"></span></p>
+    <p> <span class="longcommand">mysqldump -u root -p --skip-extended-insert <span class="glow">--complete-insert</span> Database Table</span><span class="parenthetical"></span></p>
+  </section>
+  <section>
+    <p>Then put it in Vim and run this:</p>
+    <p> <span class="verylongcommand">:s/\s*\((\|)\)\s*/ \1 /g:s/\s*,\s*/ ,/g:s/\s\+\((\|)\|,\)/\r\1/g%k%v%:s/,/, /jjv%:s/,/, /ljh%jlks /*  */ k0%llhh%kllDphh%jllllp0k%k  </span></p>
+    <p>Make desired modifications, and, if you removed any of the values fields, run this:</p>
+    <p> <span class="longcommand">{jjldi(jjlyi(kkphv%:s/\s*\*\/.*$//jv%:s/ \/\*//j%k  </span></p>
+    <p>to automatically adjust the insert fields accordingly.</p>
+  </section>
+</section>
+
+<section>
+  <h3>The MySQL Pager Command</h3>
+  <h4>...more general purpose than you may have realized.</h4>
+</section>
+
+<section>
+  <h3>Execute System Commands from the MySQL CLI</h3>
+  <p class="pbullet" style="text-align:center;"> <span class="command">\!</span></p>
+</section>
+
+<section>
+  <h3>MySQL from Vim, FTW!</h3>
+  <h4>Never under-estimate the power of Vim!</h4>
+</section>
+
+<section>Slide</section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
 </html>
