@@ -303,45 +303,16 @@
   </span>
   </p>
 
-  <p class="pbullet">
-  <span class="goals">Goal:</span>
-  &nbsp;
-  Everyone sees at least one thing they didn't know about or hadn't thought about before.
-  <span class="parenthetical">
-  (asdf)
-  </span>
-  </p>
-
 </section>
 
-<section>
-  <h3>Extracting an Insert Statement</h3>
-  <p class="pbullet"><span class="purpose">Problem:</span>&nbsp; Need to insert a record similar to an existing one.</p>
-</section>
-<section>
-  <h3>Extracting an Insert Statement</h3>
-  <p class="pbullet"><span class="purpose">Problem:</span>&nbsp; Need to insert a record similar to an existing one.</p>
-  <p class="pbullet"><span class="purpose">Solution?</span></p>
-  <p>Heaven forbid:</p>
-  <p> <span class="longcommand">select * from Table where something;</span></p>
-  <p>...and then turn it into an insert statement manually.</p>
-</section>
-<section>
-  <h3>Extracting an Insert Statement</h3>
-  <p class="pbullet"><span class="purpose">Problem:</span>&nbsp; Need to insert a record similar to an existing one.</p>
-  <p class="pbullet"><span class="purpose">Solution?</span></p>
-  <p>Better:</p>
-  <p> <span class="longcommand">select * from Table where something;</span></p>
-  <p>...and then turn it into an insert statement automatically?</p>
-  <p>But this can be finicky, and MySQL can give us insert statements directly anyway...</p>
-</section>
 <section>
   <section>
-    <h3>Extracting an Insert Statement</h3>
-    <p class="pbullet"><span class="purpose">Problem:</span>&nbsp; Need to insert a record similar to an existing one.</p>
-    <p> <span class="longcommand">mysqldump -u root -p Database Table | grep something</span></p>
-    <p> <span class="longcommand fragment">mysqldump -u root -p <span class="glow">--skip-extended-insert</span> Database Table</span><span class="parenthetical"></span></p>
-    <p> <span class="longcommand fragment">mysqldump -u root -p --skip-extended-insert <span class="glow">--complete-insert</span> Database Table</span><span class="parenthetical"></span></p>
+  <h3>Extracting an Insert Statement</h3>
+  <p class="pbullet"><span class="purpose">Problem:</span>&nbsp; Need to insert a record similar to an existing one.</p>
+  <p> <span class="longcommand fragment">select * from Table where something;</span></p>
+  <p> <span class="longcommand fragment">mysqldump -u root -p Database Table</span></p>
+  <p> <span class="longcommand fragment">mysqldump -u root -p <span class="glow">--skip-extended-insert</span> Database Table | grep something</span><span class="parenthetical"></span></p>
+  <p> <span class="longcommand fragment">mysqldump -u root -p --skip-extended-insert <span class="glow">--complete-insert</span> Database Table | grep something</span><span class="parenthetical"></span></p>
   </section>
   <section>
     <h3></h3>
