@@ -231,6 +231,11 @@
     padding-left:5%!important;
     display:block!important;
   }
+  pre
+  {
+    color:#909090!important;
+    font-size:50%!important;
+  }
     </style>
   </head>
   <body>
@@ -328,22 +333,18 @@
   <p>Better:</p>
   <p> <span class="longcommand">select * from Table where something;</span></p>
   <p>...and then turn it into an insert statement automatically?</p>
-  <p>But this can be finicky, and MySQL can give us insert statement directly anyway...</p>
-</section>
-<section>
-  <h3>Extracting an Insert Statement</h3>
-  <p class="pbullet"><span class="purpose">Problem:</span>&nbsp; Need to insert a record similar to an existing one.</p>
-  <p> <span class="longcommand">mysqldump -u root -p Database Table | grep something</span></p>
+  <p>But this can be finicky, and MySQL can give us insert statements directly anyway...</p>
 </section>
 <section>
   <section>
     <h3>Extracting an Insert Statement</h3>
     <p class="pbullet"><span class="purpose">Problem:</span>&nbsp; Need to insert a record similar to an existing one.</p>
     <p> <span class="longcommand">mysqldump -u root -p Database Table | grep something</span></p>
-    <p> <span class="longcommand">mysqldump -u root -p <span class="glow">--skip-extended-insert</span> Database Table</span><span class="parenthetical"></span></p>
-    <p> <span class="longcommand">mysqldump -u root -p --skip-extended-insert <span class="glow">--complete-insert</span> Database Table</span><span class="parenthetical"></span></p>
+    <p> <span class="longcommand fragment">mysqldump -u root -p <span class="glow">--skip-extended-insert</span> Database Table</span><span class="parenthetical"></span></p>
+    <p> <span class="longcommand fragment">mysqldump -u root -p --skip-extended-insert <span class="glow">--complete-insert</span> Database Table</span><span class="parenthetical"></span></p>
   </section>
   <section>
+    <h3></h3>
     <p>Then put it in Vim and run this:</p>
     <p> <span class="verylongcommand">:s/\s*\((\|)\)\s*/ \1 /g:s/\s*,\s*/ ,/g:s/\s\+\((\|)\|,\)/\r\1/g%k%v%:s/,/, /jjv%:s/,/, /ljh%jlks /*  */ k0%llhh%kllDphh%jllllp0k%k  </span></p>
     <p>Make desired modifications, and, if you removed any of the values fields, run this:</p>
@@ -353,8 +354,47 @@
 </section>
 
 <section>
+<section>
   <h3>The MySQL Pager Command</h3>
-  <h4>...more general purpose than you may have realized.</h4>
+  <h4>...more versatile than you may have realized.</h4>
+  <p> <span class="command">pager less</span></p>
+  <p> <span class="command fragment">pager grep foo</span></p>
+  <p> <span class="command fragment">pager cat > /home/uname/foo.txt</span></p>
+  <p> <span class="command fragment">pager cut -c 1-200</span></p>
+  <p> <span class="command fragment">pager vim -R -</span></p>
+  <p> <span class="fragment"><span class="command">pager tt</span><span class="parenthetical">(set it to a custom script)</span></span></p>
+  <p> <span class="fragment"><span class="command">pager</span><span class="parenthetical">(set it back to default: stdout)</span></span></p>
+</section>
+<section>
+  <h3>tt -- Table Transpose</h3>
+  <h4>A script I wrote to transpose MySQL ASCII tables.</h4>
+  <p> <span class="command">https://github.com/dannythorne/tt</span></p>
+
+  <h4>Example:</h4>
+  <pre>
+
+        $ cat table.txt
+        +----+----+----+----+----+----+----+----+
+        |  a |  b |  c |  d |  e |  f |  g |  h |
+        +----+----+----+----+----+----+----+----+
+        | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 |
+        | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 |
+        +----+----+----+----+----+----+----+----+
+
+        $ tt < table.txt
+        +---+----+----+
+        | a | 11 | 21 |
+        +---+----+----+
+        | b | 12 | 22 |
+        | c | 13 | 23 |
+        | d | 14 | 24 |
+        | e | 15 | 25 |
+        | f | 16 | 26 |
+        | g | 17 | 27 |
+        | h | 18 | 28 |
+        +---+----+----+
+  </pre>
+</section>
 </section>
 
 <section>
@@ -365,9 +405,11 @@
 <section>
   <h3>MySQL from Vim, FTW!</h3>
   <h4>Never under-estimate the power of Vim!</h4>
+  <p> <span class="command">ggVG:!mysql -u name -p -tv</span></p>
 </section>
 
-<section>Slide</section>
+<section>
+</section>
 
       </div>
     </div>
