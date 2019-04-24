@@ -260,7 +260,7 @@
   <h2 id="title2" style="">Working With</h2>
   <h2 id="title3">About MySQL</h2>
   <p style="color:#2e5280;margin-bottom:1%!important;">
-  By: Danny Thorne
+  <a href="https://dannythorne.github.io/SomeThingsAboutMySQL">https://dannythorne.github.io/SomeThingsAboutMySQL</a>
   </p>
   </div>
   <img src="./img/Banner_alpha.png" style="margin:0;border:0;box-shadow:0 0 0;background:rgba(0,0,0,0);width:49%;">
@@ -272,8 +272,8 @@
   <h2 id="title1">Some Things About</h2>
   <h2 id="title2" style="">Working With</h2>
   <h2 id="title3">MySQL</h2>
-  <p style="color:#2e2e2e;margin-bottom:1%!important;">
-  By: Danny Thorne
+  <p style="color:#2e2e2e;margin-bottom:0!important;font-size:50%!important;padding-left:0!important;">
+  <a style="padding-left:0!important;color:#606060!important;" href="https://dannythorne.github.io/SomeThingsAboutMySQL">https://dannythorne.github.io/SomeThingsAboutMySQL</a>
   </p>
   </div>
   <img src="./img/Banner_alpha.png" style="margin:0;border:0;box-shadow:0 0 0;background:rgba(0,0,0,0);width:49%;">
@@ -311,17 +311,6 @@
   </span>
   </p>
 
-</section>
-
-<section>
-  <section>
-  <h3>Extracting an Insert Statement</h3>
-  <p class="pbullet"><span class="purpose">Problem:</span>&nbsp; Need to insert a record similar to an existing one.</p>
-  <p> <span class="longcommand fragment">select * from Table where something;</span></p>
-  <p> <span class="longcommand fragment">mysqldump -u root -p Database Table</span></p>
-  <p> <span class="longcommand fragment">mysqldump -u root -p <span class="glow">--skip-extended-insert</span> Database Table | grep something</span><span class="parenthetical"></span></p>
-  <p> <span class="longcommand fragment">mysqldump -u root -p --skip-extended-insert <span class="glow">--complete-insert</span> Database Table | grep something</span><span class="parenthetical"></span></p>
-  </section>
 </section>
 
 <section>
@@ -413,7 +402,18 @@ scaleFac = <span class="Identifier">float</span>(maxBarLength) / <span class="Id
   <h3>Execute System Commands from the MySQL CLI</h3>
   <p style="margin-top:1em;margin-bottom:2em;"> <span class="command">\!</span></p>
   <p> <span class="command fragment">\! cat /home/uname/.mysql_history</span></p>
-  <p> <span class="command fragment">\! sh</span></p>
+  <p> <span class="command fragment">\! bash</span></p>
+</section>
+
+<section>
+  <section>
+  <h3>Extracting an Insert Statement</h3>
+  <p class="pbullet"><span class="purpose">Problem:</span>&nbsp; Need to insert a record similar to an existing one.</p>
+  <p> <span class="longcommand fragment">select * from Table where something;</span></p>
+  <p> <span class="longcommand fragment">mysqldump -u root -p Database Table</span></p>
+  <p> <span class="longcommand fragment">mysqldump -u root -p <span class="glow">--skip-extended-insert</span> Database Table | grep something</span><span class="parenthetical"></span></p>
+  <p> <span class="longcommand fragment">mysqldump -u root -p --skip-extended-insert <span class="glow">--complete-insert</span> Database Table | grep something</span><span class="parenthetical"></span></p>
+  </section>
 </section>
 
 <section>
