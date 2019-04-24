@@ -236,6 +236,12 @@
     color:#909090!important;
     font-size:50%!important;
   }
+#vimCodeElement { font-family: monospace; font-size:40%!important;}
+.Constant { color: #008080; }
+.Identifier { color: #0000c0; }
+.Statement { color: #008000; }
+.Comment { color: #00ff00; }
+.PreProc { color: #ff6060; }
     </style>
   </head>
   <body>
@@ -250,6 +256,7 @@
 <section>
   <div style="visibility:hidden">
   <h2 id="title1">Some Things</h2>
+  <h2 id="title2" style="">Working With</h2>
   <h2 id="title3">About MySQL</h2>
   <p style="color:#2e5280;margin-bottom:1%!important;">
   By: Danny Thorne
@@ -262,9 +269,9 @@
 <section>
   <div style="">
   <h2 id="title1">Some Things About</h2>
-  <h2 id="title2" style="">Interacting With</h2>
+  <h2 id="title2" style="">Working With</h2>
   <h2 id="title3">MySQL</h2>
-  <p style="color:#2e5280;margin-bottom:1%!important;">
+  <p style="color:#2e2e2e;margin-bottom:1%!important;">
   By: Danny Thorne
   </p>
   </div>
@@ -334,15 +341,15 @@
   <p> <span class="command fragment">pager cut -c 1-200</span></p>
   <p> <span class="command fragment">pager vim -R -</span></p>
   <p> <span class="fragment"><span class="command">pager tt</span><span class="parenthetical">(set it to a custom script)</span></span></p>
+  <p> <span class="fragment"><span class="command">pager tg</span><span class="parenthetical">(set it to a custom script)</span></span></p>
   <p> <span class="fragment"><span class="command">pager</span><span class="parenthetical">(set it back to default: stdout)</span></span></p>
 </section>
 <section>
   <h3>tt -- Table Transpose</h3>
-  <h4>A script I wrote to transpose MySQL ASCII tables.</h4>
+  <h4>A script to transpose MySQL ASCII tables.</h4>
   <p> <span class="command">https://github.com/dannythorne/tt</span></p>
 
-  <h4>Example:</h4>
-  <pre>
+  <pre style="margin-top:5em;">
 
         $ cat table.txt
         +----+----+----+----+----+----+----+----+
@@ -366,17 +373,59 @@
         +---+----+----+
   </pre>
 </section>
+<section>
+  <h3>tg -- Table Graph</h3>
+  <h4>A script to put a horizontal bar graph on ASCII tables.</h4>
+<pre id='vimCodeElement'>
+<span class="Comment">#!/usr/bin/python</span>
+<span class="PreProc">import</span> sys
+
+maxBarLength = sys.argv[<span class="Constant">1</span>] <span class="Statement">if</span> <span class="Identifier">len</span>(sys.argv)&gt;<span class="Constant">1</span> <span class="Statement">else</span> <span class="Constant">'</span><span class="Constant">80</span><span class="Constant">'</span>
+maxBarLength = <span class="Identifier">int</span>(maxBarLength) <span class="Statement">if</span> maxBarLength.isdigit() <span class="Statement">else</span> <span class="Constant">80</span>
+
+lines = []
+<span class="Statement">for</span> line <span class="Statement">in</span> sys.stdin: lines.append(line.rstrip())
+
+segs = lines[<span class="Constant">0</span>].strip(<span class="Constant">'</span><span class="Constant">+</span><span class="Constant">'</span>).split(<span class="Constant">'</span><span class="Constant">+</span><span class="Constant">'</span>)
+segLengths = []
+<span class="Statement">for</span> seg <span class="Statement">in</span> segs:
+    segLengths.append(<span class="Identifier">len</span>(seg))
+
+vals = []
+<span class="Statement">for</span> line <span class="Statement">in</span> lines:
+    i = <span class="Constant">1</span>
+    <span class="Statement">for</span> n <span class="Statement">in</span> segLengths:
+        val = line[i:i+n-<span class="Constant">1</span>].strip()
+        i += (n+<span class="Constant">1</span>)
+    vals.append(val)
+
+maxVal = <span class="Constant">0</span>
+<span class="Statement">for</span> i <span class="Statement">in</span> <span class="Identifier">range</span>(<span class="Constant">0</span>,<span class="Identifier">len</span>(vals)):
+    <span class="Statement">if</span> i&lt;=<span class="Constant">2</span> <span class="Statement">or</span> i==<span class="Identifier">len</span>(vals)-<span class="Constant">1</span>: <span class="Statement">continue</span>
+    vals[i] = <span class="Identifier">int</span>(vals[i]) <span class="Statement">if</span> vals[i].isdigit() <span class="Statement">else</span> <span class="Constant">0</span>
+    maxVal = vals[i] <span class="Statement">if</span> vals[i]&gt;maxVal <span class="Statement">else</span> maxVal
+
+scaleFac = <span class="Identifier">float</span>(maxBarLength) / <span class="Identifier">float</span>(maxVal)
+
+<span class="Statement">for</span> i <span class="Statement">in</span> <span class="Identifier">range</span>(<span class="Constant">0</span>,<span class="Identifier">len</span>(vals)):
+    <span class="Identifier">print</span> lines[i]+(<span class="Constant">'</span><span class="Constant"> </span><span class="Constant">'</span>+(<span class="Constant">'</span><span class="Constant">*</span><span class="Constant">'</span>*(<span class="Identifier">int</span>(<span class="Identifier">round</span>(vals[i]*scaleFac)))) <span class="Statement">if</span> (i&gt;<span class="Constant">2</span> <span class="Statement">and</span> i&lt;<span class="Identifier">len</span>(vals)-<span class="Constant">1</span>) <span class="Statement">else</span> <span class="Constant">''</span>)
+
+</pre>
+</section>
 </section>
 
 <section>
   <h3>Execute System Commands from the MySQL CLI</h3>
-  <p class="pbullet" style="text-align:center;"> <span class="command">\!</span></p>
+  <p style="margin-top:1em;margin-bottom:2em;"> <span class="command">\!</span></p>
+  <p> <span class="command fragment">\! cat /home/uname/.mysql_history</span></p>
+  <p> <span class="command fragment">\! sh</span></p>
 </section>
 
 <section>
   <h3>MySQL from Vim, FTW!</h3>
   <h4>Never under-estimate the power of Vim!</h4>
-  <p> <span class="command">ggVG:!mysql -u name -p -tv</span></p>
+  <p class="pbullet" style="text-align:center;"> <span class="command">ggVG:!mysql -u name -p -tv</span></p>
+  <p class="pbullet" style="text-align:center;"> <span class="command">V:!mysql -u name -p -tv DB</span></p>
 </section>
 
 <section>
