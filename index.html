@@ -163,6 +163,7 @@
     border-radius:8px!important;
     background-color:#606060!important;
     color:#fff!important;
+    font-size:80%!important;
   }
   .command, .longcommand, .verylongcommand, .commandheader, .titlecommand, .goldencommand, a
   {
@@ -321,14 +322,6 @@
   <p> <span class="longcommand fragment">mysqldump -u root -p <span class="glow">--skip-extended-insert</span> Database Table | grep something</span><span class="parenthetical"></span></p>
   <p> <span class="longcommand fragment">mysqldump -u root -p --skip-extended-insert <span class="glow">--complete-insert</span> Database Table | grep something</span><span class="parenthetical"></span></p>
   </section>
-  <section>
-    <h3></h3>
-    <p>Then put it in Vim and run this:</p>
-    <p> <span class="verylongcommand">:s/\s*\((\|)\)\s*/ \1 /g^[^M:s/\s*,\s*/ ,/g^[^M:s/\s\+\((\|)\|,\)/\r\1/g^M%k%v%:s/,/, /^Mjjv%:s/,/, /^Ml^Vjh%jlks /*  */ ^[0%ll^Vhh%kllDphh%jllllp0k%k  </span></p>
-    <p>Make desired modifications, and, if you removed any of the values fields, run this:</p>
-    <p> <span class="longcommand">{jjldi(jjlyi(kkphv%:s/\s*\*\/.*$//^Mjv%:s/ \/\*//^Mj%k  </span></p>
-    <p>to automatically adjust the insert fields accordingly.</p>
-  </section>
 </section>
 
 <section>
@@ -337,6 +330,7 @@
   <h4>...more versatile than you may have realized.</h4>
   <p> <span class="command">pager less</span></p>
   <p> <span class="command fragment">pager grep foo</span></p>
+  <p> <span class="command fragment">pager grep foo | wc</span></p>
   <p> <span class="command fragment">pager cat > /home/uname/foo.txt</span></p>
   <p> <span class="command fragment">pager cut -c 1-200</span></p>
   <p> <span class="command fragment">pager vim -R -</span></p>
@@ -347,19 +341,19 @@
 <section>
   <h3>tt -- Table Transpose</h3>
   <h4>A script to transpose MySQL ASCII tables.</h4>
-  <p> <span class="command"><a href="https://github.com/dannythorne/tt/blob/master/tt">https://github.com/dannythorne/tt</a></span></p>
+  <p><span class=""><a href="https://github.com/dannythorne/tt/blob/master/tt">https://github.com/dannythorne/tt</a></span></p>
 
-  <pre style="margin-top:5em;">
+  <pre style="margin-top:0;color:#a8a8a8!important;">
 
-        $ cat table.txt
+        $ cat table.txt<span style="color:#787878;">
         +----+----+----+----+----+----+----+----+
         |  a |  b |  c |  d |  e |  f |  g |  h |
         +----+----+----+----+----+----+----+----+
         | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 |
         | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 |
-        +----+----+----+----+----+----+----+----+
+        +----+----+----+----+----+----+----+----+</span>
 
-        $ tt < table.txt
+        $ tt &lt; table.txt<span style="color:#787878;">
         +---+----+----+
         | a | 11 | 21 |
         +---+----+----+
@@ -370,13 +364,14 @@
         | f | 16 | 26 |
         | g | 17 | 27 |
         | h | 18 | 28 |
-        +---+----+----+
+        +---+----+----+</span>
   </pre>
 </section>
 <section>
   <h3>tg -- Table Graph</h3>
   <h4>A script to put a horizontal bar graph on MySQL ASCII tables.</h4>
-<pre id='vimCodeElement'>
+  <p style="font-family:monospace;font-size:50%!important;margin-bottom:0;padding-bottom:0;color:#999;">idf-dev01:/home/dthorne/bin/tg</p>
+<pre id='vimCodeElement' style="margin-top:0;">
 <span class="Comment">#!/usr/bin/python</span>
 <span class="PreProc">import</span> sys
 
@@ -423,7 +418,7 @@ scaleFac = <span class="Identifier">float</span>(maxBarLength) / <span class="Id
 
 <section>
   <h3>MySQL from Vim, FTW!</h3>
-  <h4>Never under-estimate the power of Vim!</h4>
+  <h4 style="font-family:serif;font-style:italic;font-weight:normal;">Never underestimate the power of Vim!</h4>
   <p class="pbullet" style="text-align:center;"> <span class="command">ggVG:!mysql -u name -p -tv</span></p>
   <p class="pbullet" style="text-align:center;"> <span class="command">V:!mysql -u name -p -tv DB</span></p>
 </section>
