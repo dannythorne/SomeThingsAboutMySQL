@@ -324,9 +324,9 @@
   <section>
     <h3></h3>
     <p>Then put it in Vim and run this:</p>
-    <p> <span class="verylongcommand">:s/\s*\((\|)\)\s*/ \1 /g:s/\s*,\s*/ ,/g:s/\s\+\((\|)\|,\)/\r\1/g%k%v%:s/,/, /jjv%:s/,/, /ljh%jlks /*  */ k0%llhh%kllDphh%jllllp0k%k  </span></p>
+    <p> <span class="verylongcommand">:s/\s*\((\|)\)\s*/ \1 /g^[^M:s/\s*,\s*/ ,/g^[^M:s/\s\+\((\|)\|,\)/\r\1/g^M%k%v%:s/,/, /^Mjjv%:s/,/, /^Ml^Vjh%jlks /*  */ ^[0%ll^Vhh%kllDphh%jllllp0k%k  </span></p>
     <p>Make desired modifications, and, if you removed any of the values fields, run this:</p>
-    <p> <span class="longcommand">{jjldi(jjlyi(kkphv%:s/\s*\*\/.*$//jv%:s/ \/\*//j%k  </span></p>
+    <p> <span class="longcommand">{jjldi(jjlyi(kkphv%:s/\s*\*\/.*$//^Mjv%:s/ \/\*//^Mj%k  </span></p>
     <p>to automatically adjust the insert fields accordingly.</p>
   </section>
 </section>
